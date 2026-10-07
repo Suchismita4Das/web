@@ -1,6 +1,8 @@
 const navigationLinks = document.querySelectorAll(".nav-links a");
 const sections = document.querySelectorAll("main section[id]");
 const menuToggle = document.querySelector(".menu-toggle");
+const sidebarClose = document.querySelector(".sidebar-close");
+const navBackdrop = document.querySelector(".nav-backdrop");
 const themeToggle = document.querySelector(".theme-toggle");
 const contactForm = document.querySelector("#contact-form");
 const emailCopyButton = document.querySelector(".email-copy");
@@ -33,6 +35,14 @@ menuToggle.addEventListener("click", () => {
 });
 
 navigationLinks.forEach((link) => link.addEventListener("click", closeMobileMenu));
+sidebarClose.addEventListener("click", closeMobileMenu);
+navBackdrop.addEventListener("click", closeMobileMenu);
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && document.body.classList.contains("menu-open")) {
+    closeMobileMenu();
+    menuToggle.focus();
+  }
+});
 
 themeToggle.addEventListener("click", () => {
   const isDark = document.body.classList.toggle("dark");
